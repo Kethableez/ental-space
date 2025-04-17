@@ -4,7 +4,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build --base-href='/dist/ental-space/browser/'",
+		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"serve:ssr:ental-space": "node dist/ental-space/server/server.mjs"
