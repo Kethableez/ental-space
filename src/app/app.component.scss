@@ -1,0 +1,12 @@
+:host {
+	position: relative;
+
+	.app-wrapper {
+		z-index: 4;
+		box-sizing: border-box;
+		height: 100dvh;
+		overflow-x: hidden;
+		scrollbar-color: gray var(--black);
+		scrollbar-width: thin;
+	}
+}

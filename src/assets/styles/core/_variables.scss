@@ -1,0 +1,68 @@
+// Colors
+$black: #1C1C1C;
+$white: #FAFAFA;
+$primary-100: #92A7B1;
+$primary-300: #648CA0;
+$primary-500: #517689;
+$primary-700: #263640;
+
+// Breakpoints
+$breakpoint-xs: 576px !default;
+$breakpoint-sm: 768px !default;
+$breakpoint-md: 992px !default;
+$breakpoint-lg: 1200px !default;
+$breakpoint-xl: 1400px !default;
+$breakpoint-b: 1600px !default;
+$breakpoint-xb: 1900px !default;
+
+$grid-breakpoints: (
+  init: 0,
+  xs: $breakpoint-xs,
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  b: $breakpoint-b,
+  xb: $breakpoint-xb
+) !default;
+
+// Space
+$unit: 4px !default;
+
+$space-0: 0;
+$space-1: calc($unit * 1); // 4
+$space-2: calc($unit * 2); // 8
+$space-3: calc($unit * 3); // 12
+$space-4: calc($unit * 4); // 16
+$space-6: calc($unit * 6); // 24
+$space-8: calc($unit * 8); // 32
+//$space-10: calc($unit * 10);
+$space-12: calc($unit * 12); // 48
+$space-16: calc($unit * 16); // 64
+//$space-20: calc($unit * 20);
+//$space-24: calc($unit * 24);
+$space-32: calc($unit * 32); // 128
+//$space-40: calc($unit * 40);
+//$space-48: calc($unit * 48);
+//$space-56: calc($unit * 56);
+//$space-64: calc($unit * 64);
+$space-80: calc($unit * 80); // 320
+$space-96: calc($unit * 96); // 384
+$space-120: calc($unit * 120); // 480
+$space-140: calc($unit * 140); // 560
+$space-160: calc($unit * 160); // 640
+$space-180: calc($unit * 180); // 720
+$space-192: calc($unit * 192); // 768
+$space-256: calc($unit * 256); // 1024
+$space-320: calc($unit * 320); // 1280
+$space-360: calc($unit * 360); // 1440
+$space-400: calc($unit * 400); // 1600
+$space-480: calc($unit * 480); // 1920
+
+// Containers
+$container-xs: 540px !default;
+$container-sm: 720px !default;
+$container-md: 960px !default;
+$container-lg: 1140px !default;
+$container-xl: 1320px !default;
+$container-fluid: 100% !default;

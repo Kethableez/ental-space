@@ -1,0 +1,31 @@
+<div class="content-container">
+	<div class="footer">
+		<div>
+			<img class="no-select" src="logo.png" [height]="48" alt="Ental Space Logo" />
+		</div>
+		<div>
+			<h5 class="h5 text-regular mt-2 mb-6">Reach us on</h5>
+			<div class="links">
+				@for (link of links; track $index) {
+					<a><i ktbzIcon [name]="link.icon" color="white" [size]="32"></i></a>
+				}
+			</div>
+		</div>
+		<div>
+			<h5 class="h5 text-regular mt-2 mb-6">Join our newsletter</h5>
+			<div class="newsletter-field">
+				<div class="control-wrapper">
+					<div class="control-wrapper--top-border"></div>
+					<input class="newsletter-control" placeholder="your-email@domain.com" />
+					<div class="control-wrapper--bottom-border"></div>
+				</div>
+				<button ktbzButton>Join</button>
+			</div>
+		</div>
+	</div>
+	<div class="text-center">
+		<div class="separator mb-8 mt-8"></div>
+		<p class="label-lg mb-2">© 2025 by Ental Space</p>
+		<p class="label-lg">Made with passion by &#64;Kethableez</p>
+	</div>
+</div>

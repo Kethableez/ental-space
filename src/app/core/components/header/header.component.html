@@ -1,0 +1,13 @@
+<div class="content-container navigation">
+	<img class="no-select app-logo" src="logo.png" alt="Ental Space Logo" />
+
+	@if (compactNavigation()) {
+		<button ktbzButton iconOnly icon="rocket-launch">Menu</button>
+	} @else {
+		<div class="menu-items">
+			@for (item of menuItems; track $index) {
+				<a class="menu-item no-select">{{ item.label }}</a>
+			}
+		</div>
+	}
+</div>

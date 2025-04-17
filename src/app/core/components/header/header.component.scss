@@ -1,0 +1,47 @@
+:host {
+  z-index: 9999;
+  box-sizing: border-box;
+  padding-block: 16px;
+  width: 100dvw;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .app-logo {
+    height: 32px;
+    @media screen and (width > 450px) {
+
+    height: 48px;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 72px;
+
+    .menu-item {
+      padding: 4px 12px;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 150ms ease-in-out;
+
+      &:hover {
+        color: var(--primary-300);
+      }
+
+      &:active {
+        color: var(--primary-500);
+      }
+    }
+  }
+}

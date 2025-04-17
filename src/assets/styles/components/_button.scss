@@ -1,0 +1,188 @@
+@use "../core/variables" as vars;
+@use '../core/typography' as typography;
+
+$button-font-family: typography.$font-family;
+$button-font-weight: typography.$text-medium;
+$button-font: typography.$body;
+//
+//$button-animation:
+//  background-color 150ms ease-in-out,
+//  color 150ms ease-in-out,
+//  border-color 150ms ease-in-out,
+//  outline-color 150ms ease-in-out;
+//
+//$button-link-animation:
+//  border-color 150ms ease-in-out,
+//  width 100ms ease-in-out,
+//  left 100ms ease-in-out,
+//  outline-color 150ms ease-in-out;
+//$button-gap: vars.$space-2;
+//
+button {
+  box-sizing: border-box !important;
+  background-color: unset;
+  border: unset;
+  font-family: $button-font;
+  font-weight: $button-font-weight;
+}
+//
+//.btn {
+//  outline-color: transparent;
+//  cursor: pointer;
+//  user-select: none;
+//  display: flex;
+//  flex-direction: row;
+//  align-items: center;
+//  justify-content: center;
+//  text-wrap: nowrap;
+//  text-decoration: none;
+//
+//  gap: $button-gap;
+//  font-weight: $button-font-weight;
+//  border-radius: vars.$space-2;
+//  transition: $button-animation;
+//
+//  @media screen and (max-width: 720px) {
+//    height: 48px;
+//    padding: 12px 24px;
+//    font: typography.$h6;
+//  }
+//
+//  @media screen and (min-width: 721px) and (max-width: 1300px) {
+//    height: 40px;
+//    padding: 8px 16px;
+//    font: typography.$body-lg;
+//  }
+//
+//  @media screen and (min-width: 1301px) {
+//    height: 32px;
+//    padding: 4px 12px;
+//    font: typography.$body;
+//  }
+//
+//  &.icon-only {
+//    padding: 0;
+//    aspect-ratio: 1/1;
+//  }
+//
+//
+//  &.outline {
+//    background-color: unset;
+//    border: 2px solid vars.$white;
+//    color: vars.$white;
+//
+//    &:not(:disabled):hover {
+//      border-color: vars.$primary-100;
+//      color: vars.$primary-100;
+//    }
+//
+//    &:not(:disabled):active {
+//      border-color: vars.$primary-300;
+//      color: vars.$primary-300;
+//    }
+//    //.ink {
+//    //  background-color: $ink-color-100;
+//    //}
+//  }
+//
+//  &.solid {
+//    background-color: vars.$primary-300;
+//    color: var(--white);
+//
+//    &:not(:disabled):hover {
+//      background-color: vars.$primary-500;
+//    }
+//
+//    &:not(:disabled):active {
+//      background-color: vars.$primary-700;
+//    }
+//    //
+//    //.ink {
+//    //  background-color: $ink-color-50;
+//    //}
+//  }
+//}
+//
+//
+//
+
+
+.btn {
+  cursor: pointer;
+  position: relative;
+  font-family: var(--font-family);
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 8px;
+
+  &.icon-only {
+    .btn--content {
+      padding: 8px;
+    }
+  }
+
+  &:hover {
+    .btn--top-border:before, .btn--top-border:after, .btn--bottom-border:before, .btn--bottom-border:after {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:active {
+    .btn--content {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  &--top-border:before, &--top-border:after, &--bottom-border:before, &--bottom-border:after {
+    transition: width 150ms ease-in-out, height 150ms ease-in-out;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    content: "";
+    background-color: transparent;
+  }
+
+  &--top-border:before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+  }
+
+  &--top-border:after {
+    top: 0;
+    right: 0;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+  }
+
+  &--bottom-border:before {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+  }
+
+  &--bottom-border:after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+  }
+
+  &--content {
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+    padding: 4px 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+
+    .ph-bold {
+      font-size: 24px;
+    }
+  }
+}

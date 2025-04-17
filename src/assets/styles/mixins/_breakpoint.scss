@@ -1,0 +1,53 @@
+@use '../core/variables' as vars;
+@use 'sass:map';
+
+@mixin breakpoint($size) {
+	@if $size == small-only {
+		@media (max-width: 575px) {
+			@content;
+		}
+	} @else if $size == md-only {
+		@media (max-width: 768px) {
+			@content;
+		}
+	} @else if $size == xsmall or $size == xs {
+		@media (min-width: 576px) {
+			@content;
+		}
+	} @else if $size == small or $size == sm {
+		@media (min-width: 768px) {
+			@content;
+		}
+	} @else if $size == tablet or $size == md {
+		@media (min-width: 992px) {
+			@content;
+		}
+	} @else if $size == big or $size == lg {
+		@media (min-width: 1200px) {
+			@content;
+		}
+	} @else if $size == big or $size == xl {
+		@media (min-width: 1400px) {
+			@content;
+		}
+	} @else if $size == big or $size == b {
+		@media (min-width: 1600px) {
+			@content;
+		}
+	} @else if $size == big or $size == xb {
+		@media (min-width: 1900px) {
+			@content;
+		}
+	} @else if $size == init {
+		@content;
+	}
+}
+
+@function breakpoint-min($name, $breakpoints: vars.$grid-breakpoints) {
+	$min: map.get($breakpoints, $name);
+	@return if($min != 0, $min, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: vars.$grid-breakpoints) {
+	@return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
