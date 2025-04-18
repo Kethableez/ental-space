@@ -1,4 +1,4 @@
-import { afterRender, Component, DestroyRef, inject, signal } from '@angular/core';
+import { afterRender, Component, DestroyRef, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { ButtonDirective } from '@directives/button.directive';
 import { MenuItem } from '@models/menu-item.model';
 
@@ -46,7 +46,8 @@ export class HeaderComponent {
 			this.compactNavigation.set(width < 1000);
 		});
 		observer.observe(document.body);
-
 		this.destroyRef.onDestroy(() => observer.disconnect());
 	}
+
+	private observeScroll(): void {}
 }
