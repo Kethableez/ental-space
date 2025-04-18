@@ -2,113 +2,126 @@
 
 .container,
 .container-xs {
-  $fluid: vars.$container-fluid;
-  margin-inline: auto;
-  @media screen and (width < vars.$breakpoint-xs) {
-    margin-inline: 12px;
-    width: calc($fluid - 24px);
-  }
+	$fluid: vars.$container-fluid;
+	margin-inline: auto;
+	@media screen and (width < vars.$breakpoint-xs) {
+		margin-inline: 12px;
+		width: calc($fluid - 24px);
+	}
 
-  @media screen and (width >= vars.$breakpoint-xs) {
-    width: vars.$container-xs;
-  }
+	@media screen and (width >= vars.$breakpoint-xs) {
+		width: vars.$container-xs;
+	}
 
-  @media screen and (width >= vars.$breakpoint-sm) {
-    width: vars.$container-sm;
-  }
+	@media screen and (width >= vars.$breakpoint-sm) {
+		width: vars.$container-sm;
+	}
 
-  @media screen and (width >= vars.$breakpoint-md) {
-    width: vars.$container-md;
-  }
+	@media screen and (width >= vars.$breakpoint-md) {
+		width: vars.$container-md;
+	}
 
-  @media screen and (width >= vars.$breakpoint-lg) {
-    width: vars.$container-lg;
-  }
+	@media screen and (width >= vars.$breakpoint-lg) {
+		width: vars.$container-lg;
+	}
 
-  @media screen and (width >= vars.$breakpoint-xl) {
-    width: vars.$container-xl;
-  }
+	@media screen and (width >= vars.$breakpoint-xl) {
+		width: vars.$container-xl;
+	}
 }
 
 .container-sm {
-  @media screen and (width < vars.$breakpoint-sm) {
-    width: vars.$container-fluid;
-  }
+	@media screen and (width < vars.$breakpoint-sm) {
+		width: vars.$container-fluid;
+	}
 
-  @media screen and (width >= vars.$breakpoint-sm) {
-    width: vars.$container-sm;
-  }
+	@media screen and (width >= vars.$breakpoint-sm) {
+		width: vars.$container-sm;
+	}
 
-  @media screen and (width >= vars.$breakpoint-md) {
-    width: vars.$container-md;
-  }
+	@media screen and (width >= vars.$breakpoint-md) {
+		width: vars.$container-md;
+	}
 
-  @media screen and (width >= vars.$breakpoint-lg) {
-    width: vars.$container-lg;
-  }
+	@media screen and (width >= vars.$breakpoint-lg) {
+		width: vars.$container-lg;
+	}
 
-  @media screen and (width >= vars.$breakpoint-xl) {
-    width: vars.$container-xl;
-  }
+	@media screen and (width >= vars.$breakpoint-xl) {
+		width: vars.$container-xl;
+	}
 }
 
 .container-md {
-  @media screen and (width < vars.$breakpoint-md) {
-    width: vars.$container-fluid;
-  }
+	@media screen and (width < vars.$breakpoint-md) {
+		width: vars.$container-fluid;
+	}
 
-  @media screen and (width >= vars.$breakpoint-md) {
-    width: vars.$container-md;
-  }
+	@media screen and (width >= vars.$breakpoint-md) {
+		width: vars.$container-md;
+	}
 
-  @media screen and (width >= vars.$breakpoint-lg) {
-    width: vars.$container-lg;
-  }
+	@media screen and (width >= vars.$breakpoint-lg) {
+		width: vars.$container-lg;
+	}
 
-  @media screen and (width >= vars.$breakpoint-xl) {
-    width: vars.$container-xl;
-  }
+	@media screen and (width >= vars.$breakpoint-xl) {
+		width: vars.$container-xl;
+	}
 }
 
 .container-lg {
-  @media screen and (width < vars.$breakpoint-lg) {
-    width: vars.$container-fluid;
-  }
+	@media screen and (width < vars.$breakpoint-lg) {
+		width: vars.$container-fluid;
+	}
 
-  @media screen and (width >= vars.$breakpoint-lg) {
-    width: vars.$container-lg;
-  }
+	@media screen and (width >= vars.$breakpoint-lg) {
+		width: vars.$container-lg;
+	}
 
-  @media screen and (width >= vars.$breakpoint-xl) {
-    width: vars.$container-xl;
-  }
+	@media screen and (width >= vars.$breakpoint-xl) {
+		width: vars.$container-xl;
+	}
 }
 
 .container-xl {
-  @media screen and (width < vars.$breakpoint-xl) {
-    width: vars.$container-fluid;
-  }
+	@media screen and (width < vars.$breakpoint-xl) {
+		width: vars.$container-fluid;
+	}
 
-  @media screen and (width >= vars.$breakpoint-xl) {
-    width: vars.$container-xl;
-  }
+	@media screen and (width >= vars.$breakpoint-xl) {
+		width: vars.$container-xl;
+	}
 }
 
 .container-fluid {
-  width: vars.$container-fluid;
+	width: vars.$container-fluid;
 }
 
-
 .content-container {
-  margin-inline: 16px;
+	margin-inline: 16px;
 
-  @media screen and (width > 992px) and (width <= 1400px) {
-    margin-inline: 32px;
-  }
+	@media screen and (width > 992px) and (width <= 1400px) {
+		margin-inline: 32px;
+	}
 
-  @media screen and (width > 1400px)  {
-    //margin-inline: 512px
-    width: 1300px;
-    margin-inline: auto;
-  }
+	@media screen and (width > 1400px) {
+		//margin-inline: 512px
+		width: 1300px;
+		margin-inline: auto;
+	}
+
+	&--padding {
+		padding-inline: 16px;
+
+		@media screen and (width > 992px) and (width <= 1400px) {
+			padding-inline: 32px;
+		}
+
+		@media screen and (width > 1400px) {
+			//padding-inline: 512px
+			width: 1300px;
+			margin-inline: auto;
+		}
+	}
 }
