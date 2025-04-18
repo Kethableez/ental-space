@@ -1,4 +1,4 @@
-import { afterRender, Component, DestroyRef, viewChild } from '@angular/core';
+import { afterRender, Component, DestroyRef, signal, viewChild } from '@angular/core';
 import { starConfig } from '@consts/star-config.const';
 import { TextHighlightDirective } from '@directives/text-highlight.directive';
 import { Star } from '@models/star.model';
@@ -13,7 +13,7 @@ export class HeroComponent {
 	public starCanvas = viewChild('star');
 	public canvasEl!: HTMLCanvasElement;
 	public ctx!: CanvasRenderingContext2D;
-
+	public readonly starsEnabled = signal(false);
 	private stars!: Star[];
 	private width!: number;
 	private height!: number;
@@ -21,18 +21,24 @@ export class HeroComponent {
 
 	constructor(private readonly destroyRef: DestroyRef) {
 		afterRender(() => {
-			this.width = window.innerWidth;
-			this.height = window.innerHeight;
-
-			this.stars = this.makeStars(100);
-			this.canvasEl = (this.starCanvas() as any).nativeElement as HTMLCanvasElement;
-			this.canvasEl.width = this.width;
-			this.canvasEl.height = this.height;
-			this.ctx = (this.canvasEl as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
-			this.createStars();
-			this.run();
-			this.observeWidthChange();
+			if (this.starsEnabled()) {
+				this.animateStars();
+			}
 		});
+	}
+
+	private animateStars(): void {
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+
+		this.stars = this.makeStars(100);
+		this.canvasEl = (this.starCanvas() as any).nativeElement as HTMLCanvasElement;
+		this.canvasEl.width = this.width;
+		this.canvasEl.height = this.height;
+		this.ctx = (this.canvasEl as HTMLCanvasElement).getContext('2d') as CanvasRenderingContext2D;
+		this.createStars();
+		this.run();
+		this.observeWidthChange();
 	}
 
 	private run(): void {

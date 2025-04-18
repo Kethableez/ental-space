@@ -23,6 +23,11 @@ $border: 2px solid var(--white);
 
 		&__logo {
 			align-self: center;
+			height: 32px;
+
+			@media screen and (width >= 450px) {
+				height: 48px;
+			}
 		}
 	}
 
@@ -45,6 +50,7 @@ $border: 2px solid var(--white);
 		display: flex;
 		width: 100%;
 		flex-direction: column;
+		gap: 8px;
 
 		::ng-deep .btn {
 			flex-grow: 1;
@@ -61,14 +67,14 @@ $border: 2px solid var(--white);
 			align-items: center;
 			padding: 8px;
 			position: relative;
-			margin-bottom: -2px;
-			margin-right: 0;
+			//margin-bottom: -2px;
+			//margin-right: 0;
 			height: 54px;
 			box-sizing: border-box;
 
 			@media screen and (width >= vars.$breakpoint-md) {
-				margin-bottom: 0;
-				margin-right: -2px;
+				//margin-bottom: 0;
+				//margin-right: -2px;
 			}
 
 			&--top-border:before,
@@ -83,6 +89,16 @@ $border: 2px solid var(--white);
 				height: 10px;
 				content: '';
 				background-color: transparent;
+			}
+
+			&:focus-within {
+				.control-wrapper--top-border:before,
+				.control-wrapper--top-border:after,
+				.control-wrapper--bottom-border:before,
+				.control-wrapper--bottom-border:after {
+					width: 16px;
+					height: 16px;
+				}
 			}
 
 			&--top-border:before {
