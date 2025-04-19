@@ -1,7 +1,8 @@
-import { afterRender, ChangeDetectorRef, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { afterRender, Component, ElementRef, signal, viewChild } from '@angular/core';
 import { FooterComponent } from '@components/footer/footer.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { HeroComponent } from '@sections/hero/hero.component';
+import { SeoService } from '@services/seo.service';
 import { distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 
 @Component({
@@ -11,13 +12,12 @@ import { distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 	styleUrl: './app.component.scss'
 })
 export class AppComponent {
-	title = 'Ental space';
-	hasTransparentBg = signal<boolean>(true);
-	scrollEnabled = signal<boolean>(true);
+	public readonly hasTransparentBg = signal<boolean>(true);
+	public readonly scrollEnabled = signal<boolean>(true);
+	private readonly scrollableContent = viewChild<ElementRef<HTMLDivElement>>('appWrapper');
 
-	private scrollableContent = viewChild<ElementRef<HTMLDivElement>>('appWrapper');
-
-	constructor(private readonly cdRef: ChangeDetectorRef) {
+	constructor(private readonly seoService: SeoService) {
+		this.seoService.setupSeo();
 		afterRender(() => {
 			this.observeScroll$();
 		});
