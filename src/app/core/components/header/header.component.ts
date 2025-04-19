@@ -1,6 +1,7 @@
 import { afterRender, Component, DestroyRef, ElementRef, HostBinding, HostListener, inject, input, output, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fadeInOut } from '@animations/fade.animation';
+import { slideUp } from '@animations/slide.animation';
 import { ButtonDirective } from '@directives/button.directive';
 import { MenuItem } from '@models/menu-item.model';
 import { distinctUntilChanged, fromEvent } from 'rxjs';
@@ -10,15 +11,14 @@ import { distinctUntilChanged, fromEvent } from 'rxjs';
 	imports: [ButtonDirective],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
-	animations: [fadeInOut]
+	animations: [fadeInOut, slideUp]
 })
 export class HeaderComponent {
+	public readonly trapScroll = output<boolean>();
 	public readonly isHeaderTransparent = input<boolean>(true);
-	public trapScroll = output<boolean>();
-	public menuState = signal(false);
-	protected compactNavigation = signal(false);
-	private readonly destroyRef = inject(DestroyRef);
-	protected readonly menuItems: MenuItem[] = [
+	public readonly menuState = signal(false);
+	public readonly compactNavigation = signal(false);
+	public readonly menuItems: MenuItem[] = [
 		{
 			label: 'About',
 			fragment: '#about',
@@ -40,11 +40,12 @@ export class HeaderComponent {
 			icon: 'contact-icon'
 		}
 	];
+
 	@HostBinding('class.is-transparent') get isTransparent(): boolean {
 		return this.isHeaderTransparent();
 	}
 
-	constructor() {
+	constructor(private readonly destroyRef: DestroyRef) {
 		afterRender(() => {
 			this.observe();
 		});

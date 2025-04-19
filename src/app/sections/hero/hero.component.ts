@@ -1,6 +1,7 @@
-import { afterRender, Component, DestroyRef, signal, viewChild } from '@angular/core';
+import { afterRender, Component, DestroyRef, ElementRef, signal, viewChild } from '@angular/core';
 import { starConfig } from '@consts/star-config.const';
 import { TextHighlightDirective } from '@directives/text-highlight.directive';
+import { environment } from '@env/environment';
 import { Star } from '@models/star.model';
 
 @Component({
@@ -10,10 +11,10 @@ import { Star } from '@models/star.model';
 	styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-	public starCanvas = viewChild('star');
 	public canvasEl!: HTMLCanvasElement;
 	public ctx!: CanvasRenderingContext2D;
-	public readonly starsEnabled = signal(false);
+	public readonly starCanvas = viewChild<ElementRef<HTMLCanvasElement>>('star');
+	public readonly starsEnabled = signal(environment.starsEnabled);
 	private stars!: Star[];
 	private width!: number;
 	private height!: number;
