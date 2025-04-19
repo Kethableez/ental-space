@@ -11,9 +11,15 @@
 		left: 0;
 	}
 
-	@media screen and (max-width: 576px) {
-		height: 540px;
+	@media screen and (max-width: 1000px) {
+		height: calc(100dvh + 80px);
+	}
 
+	@media screen and (min-width: 1000px) {
+		height: 100dvh;
+	}
+
+	@media screen and (max-width: 576px) {
 		.display-sm {
 			margin-top: 32px;
 			font-size: 48px;
@@ -33,8 +39,6 @@
 	}
 
 	@media screen and (min-width: 577px) {
-		height: 100dvh;
-
 		.display-sm {
 			font-size: 60px;
 		}

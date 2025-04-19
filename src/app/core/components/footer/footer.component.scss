@@ -73,6 +73,8 @@ $border: 2px solid var(--white);
 			box-sizing: border-box;
 
 			@media screen and (width >= vars.$breakpoint-md) {
+				height: initial;
+
 				//margin-bottom: 0;
 				//margin-right: -2px;
 			}

@@ -23,6 +23,7 @@
 	}
 
 	.navigation {
+		anchor-name: --navigation-bar;
 		background-color: black;
 		padding-block: 8px;
 		transition: background-color 150ms ease-in-out;
@@ -31,7 +32,7 @@
 			background-color: transparent;
 		}
 
-		@media screen and (width > 450px) {
+		@media screen and (width > 1000px) {
 			padding-block: 16px;
 		}
 
@@ -59,11 +60,51 @@
 		}
 	}
 
+	.menu-mobile {
+		background: black;
+		position: fixed;
+		position-area: bottom;
+		position-anchor: --navigation-bar;
+		width: 100dvw;
+		height: 100%;
+
+		&__content {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+
+	.separator {
+		margin-inline: auto;
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: gray;
+	}
+
 	.menu-items {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 72px;
+		gap: 32px;
+
+		&--mobile {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 32px;
+
+			.menu-item--mobile {
+				padding: 8px 16px;
+				font-size: 20px;
+				font-weight: 500;
+				cursor: pointer;
+				transition: 150ms ease-in-out;
+			}
+		}
 
 		.menu-item {
 			padding: 4px 12px;

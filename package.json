@@ -1,16 +1,19 @@
 {
 	"name": "ental-space",
-	"version": "0.0.0",
+	"version": "0.1.0",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
-		"build": "ng build",
+		"build:prod": "ng build --configuration prod",
+		"build:stage": "ng build --configuration stage",
+		"build:dev": "ng build --configuration dev",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"serve:ssr:ental-space": "node dist/ental-space/server/server.mjs"
 	},
 	"private": true,
 	"dependencies": {
+		"@angular/animations": "^19.2.7",
 		"@angular/common": "^19.2.0",
 		"@angular/compiler": "^19.2.0",
 		"@angular/core": "^19.2.0",
