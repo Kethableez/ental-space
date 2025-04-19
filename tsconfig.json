@@ -18,6 +18,7 @@
 		"target": "ES2022",
 		"module": "ES2022",
 		"paths": {
+			"@animations/*": ["./src/app/core/animations/*"],
 			"@functions/*": ["./src/app/core/functions/*"],
 			"@models/*": ["./src/app/core/models/*"],
 			"@consts/*": ["./src/app/core/consts/*"],

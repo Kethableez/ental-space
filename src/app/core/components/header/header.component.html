@@ -1,9 +1,21 @@
-<div class="navigation" [class.is-transparent]="isHeaderTransparent()">
+<div class="navigation" [class.is-transparent]="isHeaderTransparent() && !menuState()">
 	<div class="content-container navigation__body">
 		<img class="no-select app-logo" src="logo.png" alt="Ental Space Logo" />
 
 		@if (compactNavigation()) {
-			<button ktbzButton iconOnly icon="rocket-launch">Menu</button>
+			<button ktbzButton iconOnly icon="rocket-launch" (click)="toggleMenu()">Menu</button>
+			@if (menuState()) {
+				<div class="menu-mobile" @fadeInOut>
+					<div class="separator"></div>
+					<div class="menu-mobile__content">
+						<div class="menu-items--mobile">
+							@for (item of menuItems; track $index) {
+								<a class="menu-item no-select">{{ item.label }}</a>
+							}
+						</div>
+					</div>
+				</div>
+			}
 		} @else {
 			<div class="menu-items">
 				@for (item of menuItems; track $index) {

@@ -1,5 +1,5 @@
-<div #appWrapper id="app-wrapper" class="app-wrapper">
-	<ktbz-header [isHeaderTransparent]="hasTransparentBg()"></ktbz-header>
+<div #appWrapper id="app-wrapper" class="app-wrapper" [class.scroll-trap]="!scrollEnabled()">
+	<ktbz-header [isHeaderTransparent]="hasTransparentBg()" (trapScroll)="toggleScroll($event)"></ktbz-header>
 	<ktbz-hero></ktbz-hero>
 	<ktbz-footer></ktbz-footer>
 </div>
