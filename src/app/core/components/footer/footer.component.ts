@@ -10,7 +10,7 @@ import { Link } from '@models/link.model';
 	styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-	protected readonly links: Link[] = [
+	public readonly links: Link[] = [
 		{
 			label: 'LinkedIn',
 			icon: 'linkedin-logo',
