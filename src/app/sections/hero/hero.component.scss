@@ -1,90 +1,85 @@
 :host {
-  display: block;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
+	margin-top: -80px;
+	display: block;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
 
-  .star-canvas {
-    position: absolute;
+	.star-canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 
-    //height: 100dvh;
-    //width: 100dvw;
-    top: 0;
-    left: 0;
-  }
+	@media screen and (max-width: 576px) {
+		height: 540px;
 
-  @media screen and (max-width: 576px) {
-    height: 540px;
+		.display-sm {
+			margin-top: 32px;
+			font-size: 48px;
+		}
 
-    .display-sm {
-      font-size: 48px;
-    }
+		.wireframe-img {
+			height: 450px;
+			top: 50%;
+			right: -450px;
+			transform: translateY(-40%);
+		}
 
-    .wireframe-img {
-      height: 450px;
-      top: 50%;
-      right: -450px;
-      transform: translateY(-40%);
-    }
+		.hero-container {
+			margin-top: 64px;
+			align-items: start;
+		}
+	}
 
-    .hero-container {
-      margin-top: 64px;
-      align-items: start;
-    }
-  }
+	@media screen and (min-width: 577px) {
+		height: 100dvh;
 
-  @media screen and (min-width: 577px) {
-    height: 100dvh;
+		.display-sm {
+			font-size: 60px;
+		}
 
-    .display-sm {
-      font-size: 60px;
-    }
+		.wireframe-img {
+			height: 850px;
+			top: 50%;
+			right: -850px;
+			transform: translateY(-50%);
+		}
 
-    .wireframe-img {
-      height: 850px;
-      top: 50%;
-      right: -850px;
-      transform: translateY(-50%);
-    }
+		.hero-container {
+			align-items: center;
+		}
+	}
 
-    .hero-container {
-      align-items: center;
-    }
-  }
+	.hero-container {
+		position: inherit;
+		z-index: 100;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		gap: 40px;
+	}
 
-  .hero-container {
-    position: inherit;
-    z-index: 100;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    gap: 40px;
-  }
+	.background-img {
+		opacity: 80%;
+		pointer-events: none;
+		z-index: 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-position: center;
+		background-size: cover;
+		object-fit: cover;
 
-  .background-img {
-    opacity: 80%;
-    pointer-events: none;
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    object-fit: cover;
+		mask-image: radial-gradient(ellipse 180% 250% at center left, black 30%, transparent 50%);
+	}
 
-    mask-image: radial-gradient(
-        ellipse 180% 250% at center left,
-        black 30%,
-        transparent 50%
-    );
-  }
-
-  .wireframe-img {
-    z-index: 0;
-    position: absolute;
-    pointer-events: none;
-  }
+	.wireframe-img {
+		z-index: 0;
+		position: absolute;
+		pointer-events: none;
+	}
 }

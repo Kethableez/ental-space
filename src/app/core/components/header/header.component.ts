@@ -1,6 +1,8 @@
-import { afterRender, Component, DestroyRef, ElementRef, HostListener, inject, signal } from '@angular/core';
+import { afterRender, Component, DestroyRef, ElementRef, HostBinding, HostListener, inject, input, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ButtonDirective } from '@directives/button.directive';
 import { MenuItem } from '@models/menu-item.model';
+import { distinctUntilChanged, fromEvent } from 'rxjs';
 
 @Component({
 	selector: 'ktbz-header',
@@ -9,6 +11,7 @@ import { MenuItem } from '@models/menu-item.model';
 	styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+	public readonly isHeaderTransparent = input<boolean>(true);
 	protected compactNavigation = signal(false);
 	private readonly destroyRef = inject(DestroyRef);
 	protected readonly menuItems: MenuItem[] = [
@@ -33,6 +36,9 @@ export class HeaderComponent {
 			icon: 'contact-icon'
 		}
 	];
+	@HostBinding('class.is-transparent') get isTransparent(): boolean {
+		return this.isHeaderTransparent();
+	}
 
 	constructor() {
 		afterRender(() => {
@@ -48,6 +54,4 @@ export class HeaderComponent {
 		observer.observe(document.body);
 		this.destroyRef.onDestroy(() => observer.disconnect());
 	}
-
-	private observeScroll(): void {}
 }

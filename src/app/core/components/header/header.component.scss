@@ -1,47 +1,84 @@
 :host {
-  z-index: 9999;
-  box-sizing: border-box;
-  padding-block: 16px;
-  width: 100dvw;
-  position: absolute;
-  top: 0;
-  left: 0;
+	z-index: 9999;
+	box-sizing: border-box;
+	width: 100dvw;
+	position: sticky;
+	top: 0;
+	//left: 0;
 
-  .app-logo {
-    height: 32px;
-    @media screen and (width > 450px) {
+	.app-logo {
+		height: 32px;
+		@media screen and (width > 450px) {
+			height: 48px;
+		}
 
-    height: 48px;
-    }
-  }
+		::ng-deep .btn {
+			&.icon-only {
+				padding: 4px;
+			}
+			&--content {
+				padding: 4px;
+			}
+		}
+	}
 
-  .navigation {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+	.navigation {
+		background-color: black;
+		padding-block: 8px;
+		transition: background-color 150ms ease-in-out;
 
-  .menu-items {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 72px;
+		&.is-transparent {
+			background-color: transparent;
+		}
 
-    .menu-item {
-      padding: 4px 12px;
-      font-size: 20px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 150ms ease-in-out;
+		@media screen and (width > 450px) {
+			padding-block: 16px;
+		}
 
-      &:hover {
-        color: var(--primary-300);
-      }
+		&__body {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
 
-      &:active {
-        color: var(--primary-500);
-      }
-    }
-  }
+			::ng-deep .btn {
+				&.icon-only,
+				&--content {
+					padding: 4px;
+				}
+			}
+
+			@media screen and (width > 450px) {
+				::ng-deep .btn {
+					&.icon-only,
+					&--content {
+						padding: 8px;
+					}
+				}
+			}
+		}
+	}
+
+	.menu-items {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 72px;
+
+		.menu-item {
+			padding: 4px 12px;
+			font-size: 20px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: 150ms ease-in-out;
+
+			&:hover {
+				color: var(--primary-300);
+			}
+
+			&:active {
+				color: var(--primary-500);
+			}
+		}
+	}
 }

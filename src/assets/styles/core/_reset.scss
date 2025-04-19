@@ -1,19 +1,32 @@
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-  background-color: var(--black);
-  color: var(--white);
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-family);
+	background-color: var(--black);
+	color: var(--white);
 }
 
 input,
 textarea {
-  outline: unset;
-  border: unset;
-  font-family: var(--font-family);
-  font-size: 16px;
-  padding: 2px 16px;
-  background-color: #e6e6e6;
+	outline: unset;
+	border: unset;
+	font-family: var(--font-family);
+	font-size: 16px;
+	padding: 2px 16px;
+	background-color: #e6e6e6;
+}
 
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
 }
