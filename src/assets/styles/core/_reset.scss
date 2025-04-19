@@ -30,3 +30,11 @@ textarea {
 	clip: rect(0 0 0 0);
 	overflow: hidden;
 }
+
+.scroll-trap {
+	overflow-y: hidden !important;
+
+	& > * {
+		overflow-y: hidden !important;
+	}
+}

@@ -2,7 +2,7 @@ import { afterRender, ChangeDetectorRef, Component, ElementRef, signal, viewChil
 import { FooterComponent } from '@components/footer/footer.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { HeroComponent } from '@sections/hero/hero.component';
-import { distinctUntilChanged, fromEvent, map } from 'rxjs';
+import { distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 
 @Component({
 	selector: 'ktbz-root',
@@ -13,6 +13,7 @@ import { distinctUntilChanged, fromEvent, map } from 'rxjs';
 export class AppComponent {
 	title = 'Ental space';
 	hasTransparentBg = signal<boolean>(true);
+	scrollEnabled = signal<boolean>(true);
 
 	private scrollableContent = viewChild<ElementRef<HTMLDivElement>>('appWrapper');
 
@@ -22,9 +23,14 @@ export class AppComponent {
 		});
 	}
 
+	public toggleScroll(toggle: boolean): void {
+		this.scrollEnabled.set(!toggle);
+	}
+
 	private observeScroll$(): void {
 		fromEvent(this.scrollableContent()!.nativeElement!, 'scroll')
 			.pipe(
+				filter(() => this.scrollEnabled()),
 				map((event: Event) => (event.srcElement as Element).scrollTop),
 				map((scrollTop) => scrollTop < 32),
 				distinctUntilChanged()
