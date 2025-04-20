@@ -1,21 +1,21 @@
-import { afterRender, Component, DestroyRef, ElementRef, HostBinding, HostListener, inject, input, output, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { afterRender, ChangeDetectionStrategy, Component, DestroyRef, HostBinding, input, output, signal } from '@angular/core';
 import { fadeInOut } from '@animations/fade.animation';
 import { slideUp } from '@animations/slide.animation';
 import { ButtonDirective } from '@directives/button.directive';
 import { MenuItem } from '@models/menu-item.model';
-import { distinctUntilChanged, fromEvent } from 'rxjs';
 
 @Component({
 	selector: 'ktbz-header',
 	imports: [ButtonDirective],
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	animations: [fadeInOut, slideUp]
 })
 export class HeaderComponent {
 	public readonly trapScroll = output<boolean>();
 	public readonly isHeaderTransparent = input<boolean>(true);
+	public readonly mobileMenuContentVisible = signal(false);
 	public readonly menuState = signal(false);
 	public readonly compactNavigation = signal(false);
 	public readonly menuItems: MenuItem[] = [
@@ -53,12 +53,11 @@ export class HeaderComponent {
 
 	public toggleMenu(): void {
 		this.menuState.set(!this.menuState());
-		if (this.menuState()) {
-			document.body.classList.add('scroll-trap');
-		} else {
-			document.body.classList.remove('scroll-trap');
-		}
 		this.trapScroll.emit(this.menuState());
+	}
+
+	public toggleMenuMobileContent(): void {
+		this.mobileMenuContentVisible.set(this.menuState() && !this.mobileMenuContentVisible());
 	}
 
 	private observe(): void {

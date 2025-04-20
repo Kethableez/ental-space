@@ -1,26 +1,35 @@
 <div class="content-container">
 	<div class="footer">
 		<img class="no-select footer__logo" src="logo.png" alt="Ental Space Logo" />
-		<div>
-			<h6 class="h6 text-regular">Reach us on</h6>
-			<div class="links">
-				@for (link of links; track $index) {
-					<a><i ktbzIcon [name]="link.icon" color="white" [size]="32"></i></a>
-				}
+		@if (links.length) {
+			<div>
+				<h6 class="h6 text-regular">Reach us on</h6>
+				<div class="links">
+					@for (link of links; track $index) {
+						<a class="social-link" target="_blank" rel="noopener noreferrer" [href]="link.url" [title]="link.label">
+							<span class="social-link--top-border"></span>
+							<i ktbzIcon [name]="link.icon" color="white" [size]="32"></i>
+							<span class="visually-hidden"> Link to: {{ link.label }}</span>
+							<span class="social-link--bottom-border"></span>
+						</a>
+					}
+				</div>
 			</div>
-		</div>
-		<div>
-			<h6 class="h6 text-regular">Join our newsletter</h6>
-			<div class="newsletter-field">
-				<label class="control-wrapper">
-					<span class="visually-hidden">E-mail</span>
-					<div class="control-wrapper--top-border"></div>
-					<input class="newsletter-control" placeholder="your-email@domain.com" />
-					<div class="control-wrapper--bottom-border"></div>
-				</label>
-				<button ktbzButton>Join</button>
+		}
+		@if (isNewsletterEnabled) {
+			<div>
+				<h6 class="h6 text-regular">Join our newsletter</h6>
+				<div class="newsletter-field">
+					<label class="control-wrapper">
+						<span class="visually-hidden">E-mail</span>
+						<div class="control-wrapper--top-border"></div>
+						<input class="newsletter-control" placeholder="your-email@domain.com" />
+						<div class="control-wrapper--bottom-border"></div>
+					</label>
+					<button ktbzButton>Join</button>
+				</div>
 			</div>
-		</div>
+		}
 	</div>
 	<div class="text-center">
 		<div class="separator"></div>

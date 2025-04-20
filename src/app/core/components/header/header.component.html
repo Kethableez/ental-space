@@ -5,14 +5,16 @@
 		@if (compactNavigation()) {
 			<button ktbzButton iconOnly [icon]="menuState() ? 'x' : 'rocket-launch'" (click)="toggleMenu()">Menu</button>
 			@if (menuState()) {
-				<div class="menu-mobile" @fadeInOut>
+				<div class="menu-mobile" @fadeInOut (@fadeInOut.done)="toggleMenuMobileContent()">
 					<div class="separator"></div>
 					<div class="menu-mobile__content">
-						<div class="menu-items--mobile">
-							@for (item of menuItems; track $index) {
-								<a class="menu-item--mobile no-select">{{ item.label }}</a>
-							}
-						</div>
+						@if (mobileMenuContentVisible()) {
+							<div class="menu-items--mobile" @slideUp>
+								@for (item of menuItems; track $index) {
+									<a class="menu-item--mobile no-select">{{ item.label }}</a>
+								}
+							</div>
+						}
 					</div>
 				</div>
 			}

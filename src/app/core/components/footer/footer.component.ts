@@ -1,35 +1,18 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonDirective } from '@directives/button.directive';
 import { IconDirective } from '@directives/icon.directive';
 import { Link } from '@models/link.model';
+import { environment } from '@env/environment';
 
 @Component({
 	selector: 'ktbz-footer',
 	imports: [IconDirective, ButtonDirective],
 	templateUrl: './footer.component.html',
-	styleUrl: './footer.component.scss'
+	styleUrl: './footer.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-	public readonly links: Link[] = [
-		{
-			label: 'LinkedIn',
-			icon: 'linkedin-logo',
-			url: ''
-		},
-		{
-			label: 'X',
-			icon: 'x-logo',
-			url: ''
-		},
-		{
-			label: 'Youtube',
-			icon: 'youtube-logo',
-			url: ''
-		},
-		{
-			label: 'Facebook',
-			icon: 'facebook-logo',
-			url: ''
-		}
-	];
+	private readonly footerEnv = environment.footer;
+	public readonly isNewsletterEnabled = this.footerEnv.newsletterEnabled;
+	public readonly links: Link[] = this.footerEnv.socialLinks;
 }
