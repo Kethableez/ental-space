@@ -9,7 +9,7 @@ import {
 	output,
 	signal
 } from '@angular/core';
-import { fadeInOut, shrink } from '@animations/fade.animation';
+import { fadeIn, fadeInOut, shrink } from '@animations/fade.animation';
 import { slideSideStagger, slideUp } from '@animations/slide.animation';
 import { ButtonDirective } from '@directives/button.directive';
 import { environment } from '@env/environment';
@@ -21,7 +21,7 @@ import { MenuItem } from '@models/menu-item.model';
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	animations: [fadeInOut, slideUp, slideSideStagger, shrink]
+	animations: [fadeInOut, slideUp, slideSideStagger, shrink, fadeIn]
 })
 export class HeaderComponent {
 	public readonly trapScroll = output<boolean>();
@@ -70,7 +70,6 @@ export class HeaderComponent {
 		const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
 			const width = entries[0].borderBoxSize[0].inlineSize;
 			this.compactNavigation.set(width < 1000);
-			console.log('set');
 		});
 		observer.observe(document.body);
 		this.destroyRef.onDestroy(() => observer.disconnect());
