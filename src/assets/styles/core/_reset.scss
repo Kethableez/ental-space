@@ -7,6 +7,10 @@ body {
 	color: var(--white);
 }
 
+* {
+	-webkit-tap-highlight-color: transparent;
+}
+
 input,
 textarea {
 	outline: unset;
@@ -29,6 +33,13 @@ textarea {
 	clip-path: inset(100%);
 	clip: rect(0 0 0 0);
 	overflow: hidden;
+}
+
+a {
+	&:focus-visible {
+		outline: 3px solid rgba(#92a7b1, 0.5);
+		outline-offset: 2px;
+	}
 }
 
 .scroll-trap {
