@@ -1,7 +1,7 @@
 @use '../core/variables' as vars;
 @use '../core/typography' as typography;
 
-$button-font-family: typography.$font-family;
+$button-font-family: typography.$font-family-body;
 $button-font-weight: typography.$text-medium;
 $button-font: typography.$body;
 
@@ -19,36 +19,41 @@ button {
 	font-family: var(--font-family);
 	color: white;
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: 600;
 	padding: 8px;
 
 	&.icon-only {
-		.btn--content {
+		.btn__content {
 			padding: 8px;
 		}
 	}
 
 	&:hover {
-		.btn--top-border:before,
-		.btn--top-border:after,
-		.btn--bottom-border:before,
-		.btn--bottom-border:after {
+		.btn__top-border:before,
+		.btn__top-border:after,
+		.btn__bottom-border:before,
+		.btn__bottom-border:after {
 			width: 16px;
 			height: 16px;
 		}
 	}
 
 	&:active {
-		.btn--content {
+		.btn__content {
 			background-color: white;
 			color: black;
 		}
 	}
 
-	&--top-border:before,
-	&--top-border:after,
-	&--bottom-border:before,
-	&--bottom-border:after {
+	&:focus-visible {
+		outline: 3px solid rgba(#92a7b1, 0.5);
+		outline-offset: 2px;
+	}
+
+	&__top-border:before,
+	&__top-border:after,
+	&__bottom-border:before,
+	&__bottom-border:after {
 		transition:
 			width 150ms ease-in-out,
 			height 150ms ease-in-out;
@@ -59,35 +64,35 @@ button {
 		background-color: transparent;
 	}
 
-	&--top-border:before {
+	&__top-border:before {
 		top: 0;
 		left: 0;
 		border-top: 2px solid white;
 		border-left: 2px solid white;
 	}
 
-	&--top-border:after {
+	&__top-border:after {
 		top: 0;
 		right: 0;
 		border-top: 2px solid white;
 		border-right: 2px solid white;
 	}
 
-	&--bottom-border:before {
+	&__bottom-border:before {
 		bottom: 0;
 		left: 0;
 		border-bottom: 2px solid white;
 		border-left: 2px solid white;
 	}
 
-	&--bottom-border:after {
+	&__bottom-border:after {
 		bottom: 0;
 		right: 0;
 		border-bottom: 2px solid white;
 		border-right: 2px solid white;
 	}
 
-	&--content {
+	&__content {
 		transition:
 			background-color 100ms ease-in-out,
 			color 100ms ease-in-out;

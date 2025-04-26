@@ -7,7 +7,7 @@ import { environment } from '@env/environment';
 	providedIn: 'root'
 })
 export class SeoService {
-	private readonly environment = environment;
+	private readonly env = environment;
 
 	constructor(
 		@Inject(DOCUMENT) private readonly dom: Document,
@@ -22,11 +22,11 @@ export class SeoService {
 	}
 
 	private setTitle(): void {
-		this.title.setTitle(this.environment.title);
+		this.title.setTitle(this.env.seo.title);
 	}
 
 	private addMetaTags(): void {
-		this.meta.addTags(this.environment.tags);
+		this.meta.addTags(this.env.seo.tags);
 	}
 
 	private setCanonicalUrl(): void {

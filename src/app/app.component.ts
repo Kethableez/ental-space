@@ -1,4 +1,4 @@
-import { afterRender, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { afterRender, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
 import { FooterComponent } from '@components/footer/footer.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { HeroComponent } from '@sections/hero/hero.component';
@@ -9,7 +9,8 @@ import { distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 	selector: 'ktbz-root',
 	imports: [HeaderComponent, HeroComponent, FooterComponent],
 	templateUrl: './app.component.html',
-	styleUrl: './app.component.scss'
+	styleUrl: './app.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 	public readonly hasTransparentBg = signal<boolean>(true);
