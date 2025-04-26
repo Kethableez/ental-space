@@ -1,4 +1,5 @@
-import { afterRender, Component, DestroyRef, ElementRef, signal, viewChild } from '@angular/core';
+import { afterRender, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, signal, viewChild } from '@angular/core';
+import { slideUpFade } from '@animations/slide.animation';
 import { starConfig } from '@consts/star-config.const';
 import { TextHighlightDirective } from '@directives/text-highlight.directive';
 import { environment } from '@env/environment';
@@ -8,7 +9,9 @@ import { Star } from '@models/star.model';
 	selector: 'ktbz-hero',
 	imports: [TextHighlightDirective],
 	templateUrl: './hero.component.html',
-	styleUrl: './hero.component.scss'
+	styleUrl: './hero.component.scss',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	animations: [slideUpFade]
 })
 export class HeroComponent {
 	public canvasEl!: HTMLCanvasElement;

@@ -12,7 +12,7 @@
 	}
 
 	@media screen and (max-width: 1000px) {
-		height: calc(100dvh + 80px);
+		height: calc(100vh + 80px);
 	}
 
 	@media screen and (min-width: 1000px) {
@@ -40,7 +40,7 @@
 
 	@media screen and (min-width: 577px) {
 		.display-sm {
-			font-size: 60px;
+			font-size: 72px;
 		}
 
 		.wireframe-img {

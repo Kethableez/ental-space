@@ -2,5 +2,9 @@ import { environmentBase } from './environment.base';
 
 export const environment = {
 	...environmentBase,
-	canonicalUrl: ''
+	canonicalUrl: '',
+	footer: {
+		newsletterEnabled: true,
+		socialLinksEnabled: true
+	}
 };
