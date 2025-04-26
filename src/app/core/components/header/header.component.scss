@@ -37,6 +37,7 @@
 		}
 
 		&__body {
+			height: 48px;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -49,14 +50,14 @@
 				}
 			}
 
-			@media screen and (width > 450px) {
-				::ng-deep .btn {
-					&.icon-only,
-					&--content {
-						padding: 8px;
-					}
-				}
-			}
+			//@media screen and (width > 450px) {
+			//	::ng-deep .btn {
+			//		&.icon-only,
+			//		&--content {
+			//			padding: 8px;
+			//		}
+			//	}
+			//}
 		}
 	}
 

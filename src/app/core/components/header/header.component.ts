@@ -9,7 +9,7 @@ import {
 	output,
 	signal
 } from '@angular/core';
-import { fadeInOut, shrink } from '@animations/fade.animation';
+import { fadeIn, fadeInOut, shrink } from '@animations/fade.animation';
 import { slideSideStagger, slideUp } from '@animations/slide.animation';
 import { ButtonDirective } from '@directives/button.directive';
 import { environment } from '@env/environment';
@@ -21,7 +21,7 @@ import { MenuItem } from '@models/menu-item.model';
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	animations: [fadeInOut, slideUp, slideSideStagger, shrink]
+	animations: [fadeInOut, slideUp, slideSideStagger, shrink, fadeIn]
 })
 export class HeaderComponent {
 	public readonly trapScroll = output<boolean>();

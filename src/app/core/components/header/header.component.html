@@ -2,33 +2,35 @@
 	<div class="content-container navigation__body">
 		<img class="no-select app-logo" src="logo.png" alt="Ental Space Logo" />
 
-		@if (compactNavigation()) {
-			<button ktbzButton iconOnly [icon]="menuState() ? 'x' : 'rocket-launch'" (click)="toggleMenu()">Menu</button>
-			@if (menuState()) {
-				<div class="menu-mobile" @fadeInOut (@fadeInOut.done)="toggleMenuMobileContent()">
-					@if (mobileMenuContentVisible()) {
-						<div class="separator" @shrink></div>
-					}
-					<div class="menu-mobile__content">
+		@defer {
+			@if (compactNavigation()) {
+				<button [@fadeIn] ktbzButton iconOnly [icon]="menuState() ? 'x' : 'rocket-launch'" (click)="toggleMenu()">Menu</button>
+				@if (menuState()) {
+					<div class="menu-mobile" @fadeInOut (@fadeInOut.done)="toggleMenuMobileContent()">
 						@if (mobileMenuContentVisible()) {
-							<div class="menu-items--mobile" @slideSideStagger (@slideSideStagger.done)="closeMenuOnAnimationDone()">
-								@for (item of menuItems; track $index) {
-									<a class="menu-item--mobile text-semibold no-select">
-										<span class="menu-item--mobile__background"></span>
-										{{ item.label }}
-									</a>
-								}
-							</div>
+							<div class="separator" @shrink></div>
 						}
+						<div class="menu-mobile__content">
+							@if (mobileMenuContentVisible()) {
+								<div class="menu-items--mobile" @slideSideStagger (@slideSideStagger.done)="closeMenuOnAnimationDone()">
+									@for (item of menuItems; track $index) {
+										<a class="menu-item--mobile text-semibold no-select">
+											<span class="menu-item--mobile__background"></span>
+											{{ item.label }}
+										</a>
+									}
+								</div>
+							}
+						</div>
 					</div>
+				}
+			} @else {
+				<div class="menu-items">
+					@for (item of menuItems; track $index) {
+						<a class="menu-item text-semibold no-select">{{ item.label }}</a>
+					}
 				</div>
 			}
-		} @else {
-			<div class="menu-items">
-				@for (item of menuItems; track $index) {
-					<a class="menu-item text-semibold no-select">{{ item.label }}</a>
-				}
-			</div>
 		}
 	</div>
 </div>
