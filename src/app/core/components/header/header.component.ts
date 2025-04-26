@@ -70,7 +70,6 @@ export class HeaderComponent {
 		const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
 			const width = entries[0].borderBoxSize[0].inlineSize;
 			this.compactNavigation.set(width < 1000);
-			console.log('set');
 		});
 		observer.observe(document.body);
 		this.destroyRef.onDestroy(() => observer.disconnect());
