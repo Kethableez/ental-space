@@ -6,12 +6,17 @@
 			<button ktbzButton iconOnly [icon]="menuState() ? 'x' : 'rocket-launch'" (click)="toggleMenu()">Menu</button>
 			@if (menuState()) {
 				<div class="menu-mobile" @fadeInOut (@fadeInOut.done)="toggleMenuMobileContent()">
-					<div class="separator"></div>
+					@if (mobileMenuContentVisible()) {
+						<div class="separator" @shrink></div>
+					}
 					<div class="menu-mobile__content">
 						@if (mobileMenuContentVisible()) {
-							<div class="menu-items--mobile" @slideUp>
+							<div class="menu-items--mobile" @slideSideStagger (@slideSideStagger.done)="closeMenuOnAnimationDone()">
 								@for (item of menuItems; track $index) {
-									<a class="menu-item--mobile no-select">{{ item.label }}</a>
+									<a class="menu-item--mobile text-semibold no-select">
+										<span class="menu-item--mobile__background"></span>
+										{{ item.label }}
+									</a>
 								}
 							</div>
 						}
@@ -21,7 +26,7 @@
 		} @else {
 			<div class="menu-items">
 				@for (item of menuItems; track $index) {
-					<a class="menu-item no-select">{{ item.label }}</a>
+					<a class="menu-item text-semibold no-select">{{ item.label }}</a>
 				}
 			</div>
 		}

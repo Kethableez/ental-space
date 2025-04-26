@@ -30,14 +30,22 @@ export class ButtonDirective {
 	}
 
 	private labelNode!: ChildNode;
+	private iconNode?: HTMLElement;
+	private readonly defaultIconWeight = 'ph-bold';
 	protected elementRef = inject(ElementRef);
 	protected renderer = inject(Renderer2);
 
 	constructor() {
-		afterRender(() => {
-			if (!this.labelNode) {
-				this.setup();
-				this.setAttributes();
+		afterRender({
+			write: () => {
+				if (!this.labelNode) {
+					this.setup();
+					this.setAttributes();
+				}
+
+				if (this.iconNode) {
+					this.checkIconChange();
+				}
 			}
 		});
 	}
@@ -47,7 +55,6 @@ export class ButtonDirective {
 		this.getButtonLabel();
 		this.removeChildrenNodes();
 		this.setBorder('top');
-		console.log('settext');
 		this.setText();
 		if (this.icon() && !this.link()) {
 			this.applyIcon();
@@ -55,9 +62,18 @@ export class ButtonDirective {
 		this.setBorder('bottom');
 	}
 
+	private checkIconChange(): void {
+		const iconName = Array.from(this.iconNode!.classList.entries())
+			.map(([_, className]) => className)
+			.filter((className) => className !== this.defaultIconWeight)[0];
+		if (iconName !== this.icon()) {
+			this.renderer.removeClass(this.iconNode, iconName);
+			this.renderer.addClass(this.iconNode, `ph-${this.icon()!}`);
+		}
+	}
+
 	private getButtonLabel(): void {
 		if (!this.labelNode) {
-			console.log('assign label');
 			this.labelNode = this.elementRef.nativeElement.childNodes[0];
 		}
 	}
@@ -67,13 +83,14 @@ export class ButtonDirective {
 	}
 
 	private insertIcon(parent: any): void {
-		this.renderer.appendChild(parent, this.createIcon());
+		this.iconNode = this.createIcon();
+		this.renderer.appendChild(parent, this.iconNode);
 	}
 
 	private setText(): void {
 		if (this.iconOnly() && !this.link()) {
 			const content = this.renderer.createElement('div');
-			this.renderer.addClass(content, 'btn--content');
+			this.renderer.addClass(content, 'btn__content');
 			this.renderer.appendChild(this.elementRef.nativeElement, content);
 			return;
 		} else if (this.link()) {
@@ -91,7 +108,7 @@ export class ButtonDirective {
 			this.renderer.appendChild(this.elementRef.nativeElement, textElement);
 		} else {
 			const content = this.renderer.createElement('div');
-			this.renderer.addClass(content, 'btn--content');
+			this.renderer.addClass(content, 'btn__content');
 			this.renderer.appendChild(content, this.labelNode);
 			this.renderer.appendChild(this.elementRef.nativeElement, content);
 		}
@@ -99,7 +116,7 @@ export class ButtonDirective {
 
 	private setBorder(side: 'top' | 'bottom'): void {
 		const border = this.renderer.createElement('span');
-		this.renderer.addClass(border, `btn--${side}-border`);
+		this.renderer.addClass(border, `btn__${side}-border`);
 		this.renderer.appendChild(this.elementRef.nativeElement, border);
 	}
 
@@ -119,7 +136,7 @@ export class ButtonDirective {
 	private createIcon(): HTMLElement {
 		const iconName = this.icon() || 'user';
 		const iconElement = this.renderer.createElement('i') as HTMLElement;
-		const iconWeight = 'ph-bold';
+		const iconWeight = this.defaultIconWeight;
 		this.renderer.addClass(iconElement, iconWeight);
 		this.renderer.addClass(iconElement, `ph-${iconName}`);
 		if (this.link() && this.iconOnly()) {

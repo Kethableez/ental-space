@@ -5,6 +5,6 @@ export const environment = {
 	canonicalUrl: 'https://entalspace.com/',
 	footer: {
 		newsletterEnabled: false,
-		socialLinks: []
+		socialLinksEnabled: false
 	}
 };

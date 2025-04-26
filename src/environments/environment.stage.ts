@@ -4,7 +4,7 @@ export const environment = {
 	...environmentBase,
 	canonicalUrl: 'https://ental-space.pages.dev/',
 	footer: {
-		newsletterEnabled: false,
-		socialLinks: []
+		newsletterEnabled: true,
+		socialLinksEnabled: true
 	}
 };

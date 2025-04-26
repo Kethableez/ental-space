@@ -1,7 +1,18 @@
-import { afterRender, ChangeDetectionStrategy, Component, DestroyRef, HostBinding, input, output, signal } from '@angular/core';
-import { fadeInOut } from '@animations/fade.animation';
-import { slideUp } from '@animations/slide.animation';
+import {
+	afterRender,
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	DestroyRef,
+	HostBinding,
+	input,
+	output,
+	signal
+} from '@angular/core';
+import { fadeInOut, shrink } from '@animations/fade.animation';
+import { slideSideStagger, slideUp } from '@animations/slide.animation';
 import { ButtonDirective } from '@directives/button.directive';
+import { environment } from '@env/environment';
 import { MenuItem } from '@models/menu-item.model';
 
 @Component({
@@ -10,7 +21,7 @@ import { MenuItem } from '@models/menu-item.model';
 	templateUrl: './header.component.html',
 	styleUrl: './header.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	animations: [fadeInOut, slideUp]
+	animations: [fadeInOut, slideUp, slideSideStagger, shrink]
 })
 export class HeaderComponent {
 	public readonly trapScroll = output<boolean>();
@@ -18,42 +29,37 @@ export class HeaderComponent {
 	public readonly mobileMenuContentVisible = signal(false);
 	public readonly menuState = signal(false);
 	public readonly compactNavigation = signal(false);
-	public readonly menuItems: MenuItem[] = [
-		{
-			label: 'About',
-			fragment: '#about',
-			icon: 'about-icon'
-		},
-		{
-			label: 'Timeline',
-			fragment: '#timeline',
-			icon: 'timeline-icon'
-		},
-		{
-			label: 'Crew',
-			fragment: '#crew',
-			icon: 'crew-icon'
-		},
-		{
-			label: 'Contact us',
-			fragment: '#contact',
-			icon: 'contact-icon'
-		}
-	];
+	public readonly menuItems: MenuItem[] = environment.menuItems;
 
 	@HostBinding('class.is-transparent') get isTransparent(): boolean {
 		return this.isHeaderTransparent();
 	}
 
-	constructor(private readonly destroyRef: DestroyRef) {
-		afterRender(() => {
-			this.observe();
+	constructor(
+		private readonly destroyRef: DestroyRef,
+		private readonly changeDetectorRef: ChangeDetectorRef
+	) {
+		afterRender({
+			write: () => {
+				this.observe();
+			}
 		});
 	}
 
 	public toggleMenu(): void {
+		if (this.menuState()) {
+			this.mobileMenuContentVisible.set(false);
+			return;
+		}
 		this.menuState.set(!this.menuState());
 		this.trapScroll.emit(this.menuState());
+	}
+
+	public closeMenuOnAnimationDone(): void {
+		if (this.menuState() && !this.mobileMenuContentVisible()) {
+			this.menuState.set(!this.menuState());
+			this.trapScroll.emit(this.menuState());
+		}
 	}
 
 	public toggleMenuMobileContent(): void {
@@ -64,6 +70,7 @@ export class HeaderComponent {
 		const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
 			const width = entries[0].borderBoxSize[0].inlineSize;
 			this.compactNavigation.set(width < 1000);
+			console.log('set');
 		});
 		observer.observe(document.body);
 		this.destroyRef.onDestroy(() => observer.disconnect());

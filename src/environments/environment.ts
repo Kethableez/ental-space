@@ -4,7 +4,7 @@ export const environment = {
 	...environmentBase,
 	canonicalUrl: '',
 	footer: {
-		newsletterEnabled: false,
-		socialLinks: []
+		newsletterEnabled: true,
+		socialLinksEnabled: true
 	}
 };
