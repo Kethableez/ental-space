@@ -1,41 +1,45 @@
 <div class="content-container">
 	<div class="footer">
-		<img class="no-select footer__logo" src="logo.png" alt="Ental Space Logo" />
-		@if (isSocialLinksEnabled) {
-			<ktbz-content title="Reach us on">
-				<div class="links">
-					@for (link of links; track $index) {
-						<a
-							class="social-link no-select"
-							[class.social-link--inverted]="link.label === 'X'"
-							target="_blank"
-							rel="noopener noreferrer"
-							[href]="link.url"
-							[title]="link.label"
-						>
-							<span class="social-link__top-border"></span>
-							<i ktbzIcon [style.z-index]="1" [name]="link.icon" color="white" [size]="32"></i>
-							<span class="social-link__highlighted" [style.background-color]="link.brandColor"></span>
-							<span class="visually-hidden"> Link to: {{ link.label }}</span>
-							<span class="social-link__bottom-border"></span>
-						</a>
-					}
-				</div>
-			</ktbz-content>
-		}
-		@if (isNewsletterEnabled) {
-			<ktbz-content title="Join our newsletter">
-				<div class="newsletter-field">
-					<label class="control-wrapper">
-						<span class="visually-hidden">E-mail</span>
-						<div class="control-wrapper__top-border"></div>
-						<input class="newsletter-control" placeholder="your-email@domain.com" />
-						<div class="control-wrapper__bottom-border"></div>
-					</label>
-					<button ktbzButton>Join</button>
-				</div>
-			</ktbz-content>
-		}
+		<div class="footer__logo-container">
+			<img class="no-select footer__logo" src="logo.png" alt="Ental Space Logo" />
+		</div>
+		<div class="footer__content">
+			@if (isSocialLinksEnabled) {
+				<ktbz-content title="Reach us on">
+					<div class="links">
+						@for (link of links; track $index) {
+							<a
+								class="social-link no-select"
+								[class.social-link--inverted]="link.label === 'X'"
+								target="_blank"
+								rel="noopener noreferrer"
+								[href]="link.url"
+								[title]="link.label"
+							>
+								<span class="social-link__top-border"></span>
+								<i ktbzIcon [style.z-index]="1" [name]="link.icon" color="white" [size]="32"></i>
+								<span class="social-link__highlighted" [style.background-color]="link.brandColor"></span>
+								<span class="visually-hidden"> Link to: {{ link.label }}</span>
+								<span class="social-link__bottom-border"></span>
+							</a>
+						}
+					</div>
+				</ktbz-content>
+			}
+			@if (isNewsletterEnabled) {
+				<ktbz-content title="Join our newsletter">
+					<div class="newsletter-field">
+						<label class="control-wrapper">
+							<span class="visually-hidden">E-mail</span>
+							<div class="control-wrapper__top-border"></div>
+							<input class="newsletter-control" placeholder="your-email@domain.com" />
+							<div class="control-wrapper__bottom-border"></div>
+						</label>
+						<button ktbzButton>Join</button>
+					</div>
+				</ktbz-content>
+			}
+		</div>
 	</div>
 	<div class="text-center">
 		<div class="separator"></div>
