@@ -1,3 +1,5 @@
+@use '../../../../assets/styles/core/variables' as vars;
+
 :host {
 	z-index: 9999;
 	box-sizing: border-box;
@@ -116,16 +118,10 @@
 					background-color: white;
 				}
 
-				&:hover {
+				&:active {
 					color: black;
 					.menu-item--mobile__background {
 						width: 100%;
-					}
-				}
-
-				&:active {
-					.menu-item--mobile__background {
-						background-color: var(--primary-100);
 					}
 				}
 			}

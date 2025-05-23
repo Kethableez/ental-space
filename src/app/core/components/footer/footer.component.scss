@@ -9,20 +9,36 @@ $border: 2px solid var(--white);
 	border-top: 1px dashed gray;
 
 	.footer {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		@media screen and (width >= vars.$breakpoint-md) {
+		&__logo-container {
+			align-self: center;
+			flex-grow: 1;
+			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
+			justify-content: center;
+
+			@media screen and (width >= vars.$breakpoint-md) {
+				justify-content: start;
+			}
 		}
 
 		&__logo {
-			align-self: center;
 			height: 32px;
 
 			@media screen and (width >= 450px) {
 				height: 48px;
+			}
+		}
+
+		&__content {
+			margin-top: 24px;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			justify-content: space-between;
+
+			@media screen and (width >= vars.$breakpoint-md) {
+				flex-direction: row;
 			}
 		}
 	}
@@ -106,20 +122,38 @@ $border: 2px solid var(--white);
 				border-right: $border;
 			}
 
-			&:hover {
-				.social-link__top-border:before,
-				.social-link__top-border:after,
-				.social-link__bottom-border:before,
-				.social-link__bottom-border:after {
-					border-width: 2px !important;
-					width: 10px;
-					height: 10px;
+			@media only screen and (width >= vars.$breakpoint-md) {
+				&:hover {
+					.social-link__top-border:before,
+					.social-link__top-border:after,
+					.social-link__bottom-border:before,
+					.social-link__bottom-border:after {
+						border-width: 2px !important;
+						width: 10px;
+						height: 10px;
+					}
+				}
+
+				&:active {
+					.social-link__highlighted {
+						height: 70%;
+					}
 				}
 			}
 
-			&:active {
-				.social-link__highlighted {
-					height: 70%;
+			@media only screen and (width < vars.$breakpoint-md) {
+				&:focus-within {
+					.social-link__top-border:before,
+					.social-link__top-border:after,
+					.social-link__bottom-border:before,
+					.social-link__bottom-border:after {
+						border-width: 2px !important;
+						width: 10px;
+						height: 10px;
+					}
+					.social-link__highlighted {
+						height: 70%;
+					}
 				}
 			}
 
