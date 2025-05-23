@@ -28,20 +28,39 @@ button {
 		}
 	}
 
-	&:hover {
-		.btn__top-border:before,
-		.btn__top-border:after,
-		.btn__bottom-border:before,
-		.btn__bottom-border:after {
-			width: 16px;
-			height: 16px;
+	@media only screen and (width >= vars.$breakpoint-md) {
+		&:hover {
+			.btn__top-border:before,
+			.btn__top-border:after,
+			.btn__bottom-border:before,
+			.btn__bottom-border:after {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		&:active {
+			.btn__content {
+				background-color: white;
+				color: black;
+			}
 		}
 	}
 
-	&:active {
-		.btn__content {
-			background-color: white;
-			color: black;
+	@media only screen and (width < vars.$breakpoint-md) {
+		&:focus-within {
+			.btn__top-border:before,
+			.btn__top-border:after,
+			.btn__bottom-border:before,
+			.btn__bottom-border:after {
+				width: 16px;
+				height: 16px;
+			}
+
+			.btn__content {
+				background-color: white;
+				color: black;
+			}
 		}
 	}
 
