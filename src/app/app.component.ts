@@ -1,7 +1,8 @@
-import { afterRender, ChangeDetectionStrategy, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { afterRender, ChangeDetectionStrategy, Component, ElementRef, Renderer2, signal, viewChild } from '@angular/core';
 import { FooterComponent } from '@components/footer/footer.component';
 import { HeaderComponent } from '@components/header/header.component';
 import { HeroComponent } from '@sections/hero/hero.component';
+import { SchemaService } from '@services/schema.service';
 import { SeoService } from '@services/seo.service';
 import { distinctUntilChanged, filter, fromEvent, map } from 'rxjs';
 
@@ -17,8 +18,13 @@ export class AppComponent {
 	public readonly scrollEnabled = signal<boolean>(true);
 	private readonly scrollableContent = viewChild<ElementRef<HTMLDivElement>>('appWrapper');
 
-	constructor(private readonly seoService: SeoService) {
+	constructor(
+		private readonly seoService: SeoService,
+		private readonly schemaService: SchemaService,
+		private readonly renderer: Renderer2
+	) {
 		this.seoService.setupSeo();
+		this.schemaService.setupSchema(renderer);
 		afterRender(() => {
 			this.observeScroll$();
 		});
