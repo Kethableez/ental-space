@@ -32,10 +32,12 @@ export class SchemaService {
 			'@context': 'https://schema.org',
 			'@type': 'Organization',
 			name: 'Ental Space',
+			alternateName: ['Ental Space'],
 			url: this.env.canonicalUrl,
 			logo: 'https://entalspace.com/logo-blk.png',
 			description: this.getSeoTagValue('description'),
 			'@address': {
+				'@type': 'PostalAddress',
 				addressLocality: 'Wrocław',
 				addressRegion: 'Dolnośląskie',
 				addressCountry: 'PL'
