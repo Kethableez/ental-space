@@ -7,7 +7,7 @@ const seo = {
 				'We’re enabling in-space manufacturing to create materials impossible to make on Earth—thanks to microgravity and our re-entry capsule.'
 		},
 		{ name: 'keywords', content: 'Space, EntalSpace, Ental Space, Startup, User-friendly, Kethableez' },
-		{ name: 'robots', content: 'index,follow' },
+		{ name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
 		{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' }
 	]
 };
