@@ -30,18 +30,18 @@ export class SchemaService {
 	private createJsonLd(): string {
 		const data = {
 			'@context': 'https://schema.org',
-			'@type': 'Organization',
+			'@type': 'WebSite',
 			name: 'Ental Space',
 			alternateName: ['Ental Space'],
 			url: this.env.canonicalUrl,
 			logo: 'https://entalspace.com/logo-blk.png',
 			description: this.getSeoTagValue('description'),
-			'@address': {
-				'@type': 'PostalAddress',
-				addressLocality: 'Wrocław',
-				addressRegion: 'Dolnośląskie',
-				addressCountry: 'PL'
-			},
+			// '@address': {
+			// 	'@type': 'PostalAddress',
+			// 	addressLocality: 'Wrocław',
+			// 	addressRegion: 'Dolnośląskie',
+			// 	addressCountry: 'PL'
+			// },
 			sameAs: ['https://www.linkedin.com/company/ental-space/about/']
 		};
 		return `${JSON.stringify(data)}`;
